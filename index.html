@@ -14,11 +14,23 @@
       width: 100vw;
       height: 100vh;
     }
+
+    /* Progress bar */
+    #progress {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      height: 6px;
+      background: #4caf50;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
   </style>
 </head>
 
 <body>
   <div id="flipbook"></div>
+  <div id="progress"></div>
 
   <!-- StPageFlip -->
   <script src="pageflip/page-flip.browser.js"></script>
@@ -46,6 +58,5 @@
 
     // Load images directly
     flipbook.loadFromImages(pages);
-  </script>
-</body>
-</html>
+
+    // Update progress bar on

@@ -88,7 +88,7 @@
       border-radius: 6px;
     }
 
-    /* Tap zones */
+    /* Tap zones for page turning */
     #tapLeft, #tapRight {
       position: fixed;
       top: 0;
@@ -178,17 +178,17 @@
       document.getElementById("pageNumber").innerText = "Page 1 / 34";
     };
 
-    // Tap zones
+    // Page turn tap zones
     document.getElementById("tapLeft").onclick = () => flipbook.flipPrev();
     document.getElementById("tapRight").onclick = () => flipbook.flipNext();
 
-    // Zoom modal
+    // Zoom modal (button only)
     const zoomModal = document.getElementById("zoomModal");
     const zoomImage = document.getElementById("zoomImage");
 
     document.getElementById("zoomBtn").onclick = () => {
-      const currentPage = flipbook.getCurrentPageIndex();
-      zoomImage.src = pages[currentPage];
+      const current = flipbook.getCurrentPageIndex();
+      zoomImage.src = pages[current];
       zoomModal.style.display = "flex";
     };
 

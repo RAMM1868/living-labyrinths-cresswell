@@ -23,42 +23,29 @@
   <!-- StPageFlip -->
   <script src="pageflip/page-flip.browser.js"></script>
 
-  <!-- PDF.js (ES module) -->
-  <script type="module">
-    import * as pdfjsLib from './pdfjs/pdf.mjs';
+  <script>
+    // Number of pages in your flipbook
+    const totalPages = 34;
 
-    pdfjsLib.GlobalWorkerOptions.workerSrc = './pdfjs/pdf.worker.mjs';
-
-    async function loadPDF() {
-      const pdf = await pdfjsLib.getDocument('./Cresswell flipbook.pdf').promise;
-      const pages = [];
-
-      for (let i = 1; i <= pdf.numPages; i++) {
-        const page = await pdf.getPage(i);
-        const viewport = page.getViewport({ scale: 2 });
-        const canvas = document.createElement('canvas');
-        const context = canvas.getContext('2d');
-
-        canvas.width = viewport.width;
-        canvas.height = viewport.height;
-
-        await page.render({ canvasContext: context, viewport }).promise;
-
-        pages.push(canvas.toDataURL());
-      }
-
-      const flipbook = new St.PageFlip(document.getElementById('flipbook'), {
-        width: 800,
-        height: 1000,
-        size: 'stretch',
-        showCover: false,
-        maxShadowOpacity: 0.5,
-      });
-
-      flipbook.loadFromImages(pages);
+    // Build an array of image paths: ["images/1.jpg", "images/2.jpg", ...]
+    const pages = [];
+    for (let i = 1; i <= totalPages; i++) {
+      pages.push(`images/${i}.jpg`);
     }
 
-    loadPDF();
+    // Create the flipbook
+    const flipbook = new St.PageFlip(document.getElementById('flipbook'), {
+      width: 800,
+      height: 1000,
+      size: 'stretch',
+      showCover: false,
+      maxShadowOpacity: 0.5,
+      usePortrait: false,
+      mobileScrollSupport: false
+    });
+
+    // Load images directly
+    flipbook.loadFromImages(pages);
   </script>
 </body>
 </html>

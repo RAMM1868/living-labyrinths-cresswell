@@ -14,11 +14,11 @@
     #flipbook {
       width: 100vw;
       height: 100vh;
-      background: #000; /* black behind the flipbook */
+      background: #000; /* black behind the flipbook container */
     }
 
-    /* Ensures the page area behind each page is black */
-    .page {
+    /* The negative space around the book (this is the key fix) */
+    .stf__wrapper {
       background: #000 !important;
     }
 

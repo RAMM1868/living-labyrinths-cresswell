@@ -7,13 +7,19 @@
   <style>
     body {
       margin: 0;
-      background: #000;
+      background: #000; /* full black background */
       overflow: hidden;
     }
 
     #flipbook {
       width: 100vw;
       height: 100vh;
+      background: #000; /* black behind the flipbook */
+    }
+
+    /* Ensures the page area behind each page is black */
+    .page {
+      background: #000 !important;
     }
 
     /* Progress bar */

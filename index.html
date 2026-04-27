@@ -24,6 +24,7 @@
       background: #4caf50;
       width: 0%;
       transition: width 0.3s ease;
+      z-index: 9999; /* ensures visibility above flipbook */
     }
   </style>
 </head>
@@ -59,4 +60,15 @@
     // Load images directly
     flipbook.loadFromImages(pages);
 
-    // Update progress bar on
+    // Set initial progress bar width
+    document.getElementById("progress").style.width = "0%";
+
+    // Update progress bar on page flip
+    flipbook.on("flip", (e) => {
+      const current = e.data; // zero-based index
+      const percent = (current / (pages.length - 1)) * 100;
+      document.getElementById("progress").style.width = percent + "%";
+    });
+  </script>
+</body>
+</html>

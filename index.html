@@ -10,6 +10,7 @@
       background: #222;
       overflow: hidden;
     }
+
     #flipbook {
       width: 100vw;
       height: 100vh;
@@ -39,9 +40,10 @@
       border-radius: 6px;
       cursor: pointer;
       user-select: none;
-      z-index: 9999;
+      z-index: 10000;
       font-family: sans-serif;
     }
+
     #backToStart:hover {
       background: rgba(255,255,255,0.2);
     }
@@ -83,7 +85,7 @@
 
     // Update progress bar on flip
     flipbook.on("flip", (e) => {
-      const current = e.data;
+      const current = e.data; // zero-based index
       const percent = (current / (pages.length - 1)) * 100;
       document.getElementById("progress").style.width = percent + "%";
     });
